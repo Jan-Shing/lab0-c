@@ -24,10 +24,12 @@ queue_t *q_new()
 /* Free all storage used by queue */
 void q_free(queue_t *q)
 {
+    list_ele_t *tmp;
+
     if (!q)
         return;
 
-    for (list_ele_t *tmp = q->head; q->head;) {
+    while ((tmp = q->head)) {
         q->head = q->head->next;
         free(tmp->value);
         free(tmp);
