@@ -25,11 +25,10 @@ queue_t *q_new()
 void q_free(queue_t *q)
 {
     if (!q)
-        return NULL;
+        return;
 
-    while (q->head) {
-        list_ele_t *tmp;
-        tmp = q->head q->head = q->head->next;
+    for (list_ele_t *tmp = q->head; q->head;) {
+        q->head = q->head->next;
         free(tmp->value);
         free(tmp);
     }
